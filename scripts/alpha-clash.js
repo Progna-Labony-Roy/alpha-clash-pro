@@ -11,7 +11,12 @@ function continueGame(){
 
 function handleKeyboardKeyUpEvent(event){
     const playerPress = event.key;
-    // console.log('player pressed', playerPress);
+    console.log('player pressed', playerPress);
+
+    // stop the game if pressed 'Esc'
+    if(playerPress === 'Escape'){
+        gameOver();
+    }
 
     // get the expected to press
     const expectedAlphabetElement =  document.getElementById('display-alphabet');
@@ -21,30 +26,51 @@ function handleKeyboardKeyUpEvent(event){
     // check matched or not
     if(playerPress === expectedAlphabet){
         // Score
-        const presentScoreValue = document.getElementById('game-score').innerText;
-        const presentScore = parseInt(presentScoreValue);
+        const presentScore = getElementValueByID('game-score')
         const newScore = presentScore + 1 ;
-        document.getElementById('game-score').innerText= newScore
-        console.log(newScore);
-
+        updateElementValueByID('game-score',newScore)
         removeBackgroundColorByID(expectedAlphabet);
         continueGame();
     }
     else{
         console.log('you are a looser');
         // life
-        const presentLifeValue = document.getElementById('current-life').innerText;
-        const presentLife = parseInt(presentLifeValue);
+        const presentLife = getElementValueByID('current-life');
         const newLife = presentLife - 1 ;
-        document.getElementById('current-life').innerText= newLife
+        updateElementValueByID('current-life', newLife)
         console.log(newLife);
+        if(newLife === 0){
+            console.log('game over');
+            gameOver();
+        }
     }
 }
 
 document.addEventListener('keyup', handleKeyboardKeyUpEvent);
 
 function play(){
-    hideElementByID('home')
-    displayElementByID('playground')
+    // hide everything except playground
+    hideElementByID('home');
+    hideElementByID('score');
+    displayElementByID('playground');
+
+    // update score and life
+    updateElementValueByID('game-score',0)
+    updateElementValueByID('current-life', 5)
+
     continueGame();
+}
+
+
+function gameOver(){
+    hideElementByID('playground');
+    displayElementByID('score');
+
+    const lastScore = getElementValueByID('game-score');
+    document.getElementById('last-score').innerText= lastScore;
+
+
+    const currentAlphabet = getElementTextValueByID('display-alphabet');
+    // console.log(currentAlphabet);
+    removeBackgroundColorByID(currentAlphabet)
 }

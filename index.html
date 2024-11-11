@@ -74,10 +74,10 @@
             </div>
         </section>
         <!-- Score section starts -->
-        <section class="score flex justify-center min-h-screen items-end hidden" >
+        <section id="score" class="flex justify-center min-h-screen items-end hidden" >
           <div class="bg-[#FFFFFF33] w-80 rounded-lg flex flex-col items-center gap-4 py-8 mb-24">
-            <p class="text-4xl font-extrabold text-white">Score : <span>14</span></p>
-          <div class="btn">Play Now</div>
+            <p class="text-4xl font-extrabold text-white">Score : <span id="last-score">0</span></p>
+          <div onclick="play()" class="btn">Play Now</div>
           <p class="text-white text-xl">Practice will make you Pro</p>
           </div>
         </section>

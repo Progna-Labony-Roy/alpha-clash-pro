@@ -1,3 +1,9 @@
+function getElementTextValueByID(elementID){
+    const elementText = document.getElementById(elementID);
+    const Text = elementText.innerText;
+    return Text
+}
+
 function hideElementByID(elementID){
     const hiddenElement = document.getElementById(elementID);
     hiddenElement.classList.add('hidden');
@@ -32,4 +38,15 @@ function getRandomAlphabet(){
     const alphabet = alphabets[index];
     // console.log(index, alphabet);
     return alphabet
+}
+
+
+function getElementValueByID(elementID){
+    const presentScoreValue = document.getElementById(elementID).innerText;
+        const presentScore = parseInt(presentScoreValue);
+        return presentScore
+}
+
+function updateElementValueByID(elementID, value){
+    document.getElementById(elementID).innerText= value
 }
